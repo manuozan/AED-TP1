@@ -1,9 +1,10 @@
 from random import *
 from re import S
-
+print()
+print("*"*50 + " inicia el juego "+"*"*50)
 # Entradas
 palos = ('♠', '🖤', '🍀', '💎')
-numeros = (2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'K', 'Q', 'As')
+numeros = (2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'K', 'Q', 'A')
 
 #PRIMER MANO USUARIO
 carta1_usuario = choice(palos), choice(numeros)
@@ -24,7 +25,7 @@ if carta1_usuario_valor == "J" or \
     carta1_usuario_valor == "Q":
 
     carta1_usuario_valor = 10 
-elif carta1_usuario_valor == "As":
+elif carta1_usuario_valor == "A":
     carta1_usuario_valor = 11
 
 if carta2_usuario_valor == "J" or \
@@ -55,10 +56,10 @@ suma_usuario = carta2_usuario_valor + carta1_usuario_valor
 suma_crupier = carta1_crupier_valor + carta2_crupier_valor
 
 print("el usuario sacó:", carta1_usuario , carta2_usuario)
-print("el usuario sumó:", suma_usuario)
+print("la mano del usuario es:", suma_usuario)
 print()
 print("el crupier sacó:", carta1_crupier , carta2_crupier)
-print("el crupier sumó:", suma_crupier)
+print("la mano del crupier es:", suma_crupier)
 
 
 
@@ -83,7 +84,7 @@ if suma_crupier < 17:
 
     suma_crupier += carta3_crupier_valor
     print("el crupier sacó otra carta con el valor", carta3_crupier)
-    print("ahora la mano del crupier es:" + suma_crupier)
+    print("ahora la mano del crupier es:", suma_crupier)
 
 
 
@@ -116,22 +117,22 @@ print("ahora la mano del usuario es de:",suma_usuario)
 #BUSCAMOS EL GANADOR 
 
 if (suma_usuario > suma_crupier and suma_usuario <= 21) or (suma_crupier > 21 and suma_usuario <= 21): 
-    ganador = "usuario" 
+    resultado = "el usuario gana" 
 elif (suma_usuario < suma_crupier and suma_crupier <= 21) or (suma_usuario > 21 and suma_crupier <= 21): 
-    ganador = "crupier"
+    resultado = "la casa gana"
 elif suma_usuario == suma_crupier and suma_usuario <= 21:
-    ganador = "empate"
+    resultado = "hay empate"
 else: 
-    ganador = "pierden los dos"
+    resultado = "ambos pierden"
     
 
 #SALIDAS
 if carta1_usuario[0] == carta1_crupier[0]:
-    print("el palo de la primera carta de usuario, crupier es:" + carta1_usuario[0])
+    print("el palo de la primera carta de usuario, crupier es:" , carta1_usuario[0])
     if carta1_usuario[1] == carta1_crupier[1]:
-        print("el valor de la primera carta de usuario, crupier:" + carta1_usuario[1])
-
-print("el ganador es:",ganador)
+        print("el valor de la primera carta de usuario, crupier:" , carta1_usuario[1])
+print()
+print("/////",resultado)
 
 print("*"*50 + " finalizó el juego "+"*"*50)
 
