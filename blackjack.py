@@ -66,10 +66,17 @@ suma_usuario = carta2_usuario_valor + carta1_usuario_valor
 suma_crupier = carta1_crupier_valor + carta2_crupier_valor
 
 # mostrar cartas y puntaje parcial
-print("\nEl usuario sacó:", carta1_usuario, carta2_usuario)
+print("El usuario sacó:", carta1_usuario, carta2_usuario)
+# considerando que no se puede blackjack natural
+if suma_usuario == 21:
+    print("El usuario obtubo blackJack natural, el As vale -> 1")
+    suma_usuario = 11
 print("La mano del usuario es:", suma_usuario)
 print()
 print("El crupier sacó:", carta1_crupier, carta2_crupier)
+if suma_crupier == 21:
+    print("El Crupier obtubo blackJack natural, el As vale -> 1")
+    suma_crupier = 11
 print("La mano del crupier es:", suma_crupier)
 
 # si el crupier no llega a sumar 17, hacemos que junte otra carta
@@ -94,27 +101,25 @@ if suma_crupier < 17:
     print("El crupier sacó otra carta con el valor", carta3_crupier)
     print("Ahora la mano del crupier es:", suma_crupier)
 
-# si el usuario no llega a sumar 21, hacemos que junte otra carta
-if suma_usuario < 21:
+# Eleccion 3 carta usuario
+carta3_usuario = choice(palos), choice(numeros)
+carta3_usuario_valor = carta3_usuario[1]
 
-    carta3_usuario = choice(palos), choice(numeros)
-    carta3_usuario_valor = carta3_usuario[1]
+if carta3_usuario_valor == "J" or \
+        carta3_usuario_valor == "K" or \
+        carta3_usuario_valor == "Q":
+    carta3_usuario_valor = 10
 
-    if carta3_usuario_valor == "J" or \
-            carta3_usuario_valor == "K" or \
-            carta3_usuario_valor == "Q":
-        carta3_usuario_valor = 10
+elif carta3_usuario_valor == "A" and (11 + suma_usuario) > 21:
+    carta3_usuario_valor = 1
 
-    elif carta3_usuario_valor == "A" and (11 + suma_usuario) > 21:
-        carta3_usuario_valor = 1
+elif carta3_usuario_valor == "A":
+    carta3_usuario_valor = 11
 
-    elif carta3_usuario_valor == "A":
-        carta3_usuario_valor = 11
-
-    suma_usuario += carta3_usuario_valor
-    print()
-    print("El usuario sacó una tercera carta con el valor", carta3_usuario)
-    print("Ahora la mano del usuario es de:", suma_usuario)
+suma_usuario += carta3_usuario_valor
+print()
+print("El usuario sacó una tercera carta con el valor", carta3_usuario)
+print("Ahora la mano del usuario es de:", suma_usuario)
 
 # determinacion del resultado final
 if (suma_crupier < suma_usuario <= 21) or (suma_crupier > 21 >= suma_usuario):
