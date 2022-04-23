@@ -1,4 +1,5 @@
 from random import *
+from tkinter import TRUE
 
 print()
 print("*" * 50 + " inicia el juego " + "*" * 50)
@@ -22,11 +23,13 @@ carta1_crupier_valor = carta1_crupier[1]
 carta2_crupier_valor = carta2_crupier[1]
 
 # Deteminacion del valor de las figuras del usuario
+figura = False
 if carta1_usuario_valor == "J" or \
         carta1_usuario_valor == "K" or \
         carta1_usuario_valor == "Q":
-
+    
     carta1_usuario_valor = 10
+    figura = True
 elif carta1_usuario_valor == "A":
     carta1_usuario_valor = 11
 
@@ -35,6 +38,7 @@ if carta2_usuario_valor == "J" or \
         carta2_usuario_valor == "Q":
 
     carta2_usuario_valor = 10
+    figura = True
 elif carta2_usuario_valor == "A":
     if carta1_usuario_valor == "A":
         carta2_usuario_valor = 1
@@ -47,6 +51,7 @@ if carta1_crupier_valor == "J" or \
         carta1_crupier_valor == "Q":
 
     carta1_crupier_valor = 10
+    figura=True
 elif carta1_crupier_valor == "A":
     carta1_crupier_valor = 11
 
@@ -55,6 +60,7 @@ if carta2_crupier_valor == "J" or \
         carta2_crupier_valor == "Q":
 
     carta2_crupier_valor = 10
+    figura = True
 elif carta2_crupier_valor == "A":
     if carta1_crupier_valor == "A":
         carta2_crupier_valor = 1
@@ -69,13 +75,13 @@ suma_crupier = carta1_crupier_valor + carta2_crupier_valor
 print("El usuario sacó:", carta1_usuario, carta2_usuario)
 # considerando que no se puede blackjack natural
 if suma_usuario == 21:
-    print("El usuario obtubo blackJack natural, el As vale -> 1")
+    print("El usuario obtuvo blackjack natural, el A vale -> 1")
     suma_usuario = 11
 print("La mano del usuario es:", suma_usuario)
 print()
 print("El crupier sacó:", carta1_crupier, carta2_crupier)
 if suma_crupier == 21:
-    print("El Crupier obtubo blackJack natural, el As vale -> 1")
+    print("El Crupier obtuvo blackjack natural, el A vale -> 1")
     suma_crupier = 11
 print("La mano del crupier es:", suma_crupier)
 
@@ -89,6 +95,7 @@ if suma_crupier < 17:
             carta3_crupier_valor == "Q":
 
         carta3_crupier_valor = 10
+        figura = True
 
     elif carta3_crupier_valor == "A" and (11 + suma_crupier) > 21:
         carta3_crupier_valor = 1
@@ -109,6 +116,7 @@ if carta3_usuario_valor == "J" or \
         carta3_usuario_valor == "K" or \
         carta3_usuario_valor == "Q":
     carta3_usuario_valor = 10
+    figura = True
 
 elif carta3_usuario_valor == "A" and (11 + suma_usuario) > 21:
     carta3_usuario_valor = 1
@@ -133,10 +141,14 @@ else:
 
 # salidas
 if carta1_usuario[0] == carta1_crupier[0]:
+    print()
     print(f'Ambos jugadores obtuvieron {carta1_usuario[0]} en la primera carta')
     if carta1_usuario[1] == carta1_crupier[1]:
-        print(f'Ademas ambos obtuvieron {carta1_usuario[1]} en la primera carta')
+        print(f'Además ambos obtuvieron {carta1_usuario[1]} en la primera carta')
+
+if figura == True:
+    print()
+    print("Salió al menos una figura")
 print()
 print("El resultado final de la partida es:", resultado)
-
 print("*" * 50 + " Finalizó el juego " + "*" * 50)
